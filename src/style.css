@@ -1,0 +1,468 @@
+html{
+    height: auto;
+    min-height: 100%;
+    min-width:100%;
+}
+
+body{
+    font: 15px/1.5 Arial, Helvetica,sans-serif;
+    padding:0;
+    margin:0;
+    background-color:#f4f4f4;
+    background:url('./images/road.jpg') no-repeat;
+    background-position: center;
+    background-size: cover;
+}
+
+/* Global */
+.container{
+    width:80%;
+    margin:auto;
+    overflow:hidden;
+}
+
+ul{
+    margin:0;
+    padding:0;
+}
+a {
+    text-decoration: none !important;
+}
+
+/* Header **/
+header{
+    background:rgba(0, 0, 0, 0.5);
+    color:#ffffff;
+    padding-top:30px;
+    min-height:70px;
+    border-bottom:#49f705 3px solid;
+}
+header a{
+    color:#ffffff;
+    text-decoration:none;
+    font-size:16px;
+}
+
+header li{
+    display:inline;
+    padding: 0 20px 0 20px;
+}
+
+header #branding{
+    float:left;
+}
+
+header #branding h1{
+    margin:0;
+}
+
+header nav{
+    float:right;
+    margin-top:10px;
+}
+
+header .highlight, header .current a{
+    color:#49f705;
+    font-weight:bold;
+}
+
+header a:hover{
+    color:#cccccc;
+    font-weight:bold;
+}
+
+/* Showcase */
+#showcase{
+    min-height:400px;
+    /* background:url('../images/road.jpg') no-repeat; */
+    text-align:center;
+    color:#ffffff;
+    /* background-color: skyblue; */
+}
+
+#showcase h1{
+    margin-top:100px;
+    font-size:55px;
+    margin-bottom:10px;
+    color: #fff;
+    font-weight: bold;
+}
+
+#showcase p{
+    font-size:20px;
+    /* background-color: #4c6074; */
+    color: #fff;
+}
+.jumbotron{
+    /* padding:2rem 1rem; */
+    margin-bottom:2rem;
+    background-color:rgba(0, 0, 0, 0.5);
+
+    border-radius:.3rem;
+    max-width: 70%;
+    margin:0 auto;
+    margin-top: 5%;
+    border-radius: 70px;
+
+}
+
+/* forms */
+.form-box{
+
+    width: 50%;
+    height: auto;
+    background: rgba(0, 0, 0, 0.5);
+    color: #fff;
+    top: 60%;
+    left: 50%;
+    position: absolute;
+    transform: translate(-50%,-50%);
+    padding: 70px 30px;
+}
+
+h1{
+    margin: 0;
+    padding: 0 0 20px;
+    text-align: center;
+    font-size: 22px;
+}
+.form-box p{
+    margin: 0;
+    padding: 0;
+    font-weight: bold;
+}
+.form-box input{
+    width: 100%;
+    margin-bottom: 20px;
+}
+.form-box input[type="text"], input[type="password"]
+{
+    border: none;
+    border-bottom: 1px solid #fff;
+    background: transparent;
+    outline: none;
+    height: 40px;
+    color: #fff;
+    font-size: 16px;
+}
+.form-box input[type="submit"]
+{
+    border: none;
+    outline: none;
+    height: 40px;
+    background: #1c8adb;
+    color: #fff;
+    font-size: 18px;
+    border-radius: 20px;
+}
+.form-box input[type="submit"]:hover
+{
+    cursor: pointer;
+    background: #39dc79;
+    color: #000;
+}
+
+.form-box a{
+    text-decoration: none;
+    font-size: 14px;
+    color: #fff;
+}
+.form-box a:hover
+{
+    color: #39dc79;
+}
+.form-box p{
+    margin: 0;
+    padding: 0;
+    font-weight: bold;
+}
+.form-box input{
+    width: 100%;
+    margin-bottom: 20px;
+}
+.form-box input[type="text"], input[type="password"]
+{
+    border: none;
+    border-bottom: 1px solid #fff;
+    background: transparent;
+    outline: none;
+    height: 40px;
+    color: #fff;
+    font-size: 16px;
+}
+.form-box input[type="submit"]
+{
+    border: none;
+    height: 40px;
+    background: #1c8adb;
+    color: #fff;
+    font-size: 18px;
+    border-radius: 20px;
+}
+.form-box input[type="submit"]:hover
+{
+    cursor: pointer;
+    background: #39dc79;
+    /* color: #000; */
+}
+
+.form-box a{
+    text-decoration: none;
+    font-size: 14px;
+    color: #fff;
+}
+.form-box a:hover
+{
+    color: #39dc79;
+}
+
+
+/* allrides */
+
+.section-heading {
+    color: #fff;
+    text-align: center;
+    font-weight: bold;
+}
+.button-center{
+    text-align: center;
+}
+
+.row{
+    margin: 0 auto;
+}
+.ride-offers{
+    font-size: 1.3rem;
+    list-style: none;
+}
+
+.card{
+    margin: 0 auto 0.5rem;
+    max-width: 855px;
+}
+
+.ride-info {
+    align-items: center;
+    background-color: rgb(255, 255, 255);
+    color: rgb(17, 16, 16);
+    display: flex;
+    font-weight: 400;
+    justify-content: space-between;
+    padding-left: 1.0rem;
+    padding-right: 2.0rem;
+    text-decoration: none;
+}
+
+
+.btnz {
+    border-radius: 3px;
+    border-style: none;
+    padding: 10px 50px;
+    font-family: "Nunito", sans-serif;
+    font-size: 18px;
+    font-weight: bold;
+    position: relative;
+    overflow: hidden;
+    outline: none;
+
+}
+.btn-primary {
+    border: 2px solid #4CAF50;
+    background-color: #4CAF50;
+    color: #FFFFFF;
+
+}
+.btn-secondary {
+    border: 2px solid rgb(55, 123, 226);
+    background-color: rgb(55, 123, 226);
+    color: #FFFFFF;
+
+}
+.btn-danger {
+    border: 2px solid #e84118;
+    background-color: #e84118;
+    color: #FFFFFF;
+
+}
+
+/* my ride-offers */
+
+.status-accepted {
+    background-color: #44bd32;
+    color: #fff;
+    padding: 7px 15px;
+    text-align: center;
+    border-radius: 5px;
+    width: 95px;
+
+}
+.status-accepted:hover,
+.status-accepted:active {
+    background-color: rgba(5, 5, 5, 0.5);
+    color: #eceaea;
+    cursor: pointer;
+}
+
+.status-requested {
+    background-color: #d1a429;
+    color: #fff;
+    padding: 7px 15px;
+    text-align: center;
+    border-radius: 5px;
+    width: 95px;
+
+}
+
+.status-rejected {
+    background-color: #e84118;
+    color: #fff;
+    padding: 7px 15px;
+    text-align: center;
+    border-radius: 5px;
+    width: 95px;
+}
+
+
+/* ride details */
+.card-details {
+    background-color: rgba(5, 5, 5, 0.5);
+    color: skyblue;
+    display: flex;
+    flex-direction: column;
+    margin-top: 2.6rem;
+    max-width: 650px;
+    padding-left: 3%;
+    border-left: 20px solid;
+    border-left-color: #49f705;
+    border-radius: 20px;
+    padding-bottom: 3%;
+}
+
+.detail {
+    width: 170px;
+    text-align:right;
+}
+
+.details-heading {
+    font-style: italic;
+    font-weight: 600;
+    padding-right: 1.0rem;
+}
+
+.ride-details{
+    display:flex;
+    align-items: center;
+    display: flex;
+    font-weight: 400;
+    justify-content: space-between;
+    padding-left: 1.0rem;
+    padding-right: 1.0rem;
+    text-decoration: none;
+}
+
+/* user profile */
+.black-button{
+    border: none;
+    outline: 0;
+    display: inline-block;
+    padding: 8px;
+    color: white;
+    background-color: #000;
+    text-align: center;
+    cursor: pointer;
+    width: 100%;
+    font-size: 18px;
+}
+
+.profile-card-left {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    max-width: 250px;
+    background-color: #cccccc;
+    text-align: center;
+    font-family: arial;
+    /* positioning */
+    position: fixed;
+    top: 1;
+    left: 1;
+
+}
+button:hover, a:hover {
+    opacity: 0.7;
+}
+
+.ride-count {
+    background-color: #4b4b4b;
+    color: rgb(73, 231, 10);
+    font-size: 18px;
+}
+
+a {
+    text-decoration: none;
+    font-size: 22px;
+    color: blue;
+}
+
+.profile-name{
+    background-color: #4b4b4b;
+    color:rgb(73, 231, 10);
+
+}
+
+#danger{
+    color:rgb(219, 41, 41);
+    background-color: #f0e2e2;
+    border-radius: 5px;
+    text-align: center;
+    font-size: 22px;
+}
+#success{
+    color:rgb(73, 231, 10);
+    background-color: #f0e2e2;
+    border-radius: 5px;
+    text-align: center;
+    font-size: 22px;
+}
+
+#message{
+    color:rgb(219, 41, 41);
+    background-color: #f0e2e2;
+    border-radius: 5px;
+    text-align: center;
+    font-size: 22px;
+}
+
+.details-button {
+    background-color: #dbd3e2;
+    color: rgb(29, 27, 27);
+    padding: 7px 15px;
+    text-align: center;
+    border-radius: 5px;
+    width: 95px;
+
+}
+
+.details-button:hover,
+.details-button:active {
+    background-color: rgba(5, 5, 5, 0.5);
+    color: #eceaea;
+    cursor: pointer;
+}
+
+.details-success{
+    background-color: rgb(73, 231, 10);
+    color: #f0e2e2;
+    padding: 7px 15px;
+    text-align: center;
+    border-radius: 5px;
+    width: 50px;
+
+}
+.details-danger {
+    background-color: #e90707 ;
+    color: #f0e2e2;
+    padding: 7px 15px;
+    text-align: center;
+    border-radius: 5px;
+    width: 50px;
+
+}
