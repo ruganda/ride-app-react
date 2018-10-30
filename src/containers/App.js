@@ -1,19 +1,26 @@
 import React, { Component } from 'react';
 import {Route} from "react-router-dom";
+import {Provider} from 'react-redux'
 import  Rides  from "../components/ride";
 import '../App.css';
 import NavBar from "../components/navBar";
 import HomePage from "../components/Home";
+import RegisterForm from '../components/Register';
+import store from '../redux/store/Store'
+
 
 class App extends Component {
   render() {
     return (
+      <Provider store ={store}>
       <div className="App">
           <NavBar />
-          <Route paths ='/' component={ HomePage }/>
+          <Route exact path='/' component={ HomePage }/>
+          <Route path='/register' component={RegisterForm}/>
           <Route path='/rides' component={Rides }/>
 
       </div>
+      </Provider>
     );
   }
 };
