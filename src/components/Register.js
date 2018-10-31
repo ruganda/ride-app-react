@@ -3,6 +3,8 @@ import '../style.css'
 import {registerUser} from '../redux/actions/AuthActions'
 import { connect } from "react-redux";
 import PropTypes from 'prop-types';
+import M from 'materialize-css'
+
 
 
 class RegisterForm extends React.Component {
@@ -11,28 +13,42 @@ class RegisterForm extends React.Component {
         this.state = {name:'',
             username:'',
             password:'',
-            message: ''
+            confirmPassword:''
          };
          this.handleChange = this.handleChange.bind(this);
          this.handleSubmit = this.handleSubmit.bind(this);
     }
     handleChange (e){
-
+        e.preventDefault();
         this.setState({[e.target.name]: e.target.value });
     }
-    handleSubmit (e){
+    handleSubmit = async(e)=>{
         e.preventDefault();
+
         const userData = {
                         name: this.state.name,
                         username: this.state.username,
-                        password: this.state.password
+                        password: this.state.password,
                         };
+    if (this.state.password===this.state.confirmPassword){
 
-    this.props.registerUser(userData);
+        await this.props.registerUser(userData);
+        if (this.props.message){
+             M.toast({html: 'You have successfully registered, please login ', classes: 'toast ', });
+            }else if(this.props.fail && !this.props.processing){
+                M.toast({html: `${this.props.fail}`, classes: 'toast-danger ', });
+            }
+
+    }else{
+        M.toast({html: 'Your passwords do not match', classes: 'toast-danger ', });
     }
+    
+    }
+    
+
 
     render() {
-
+            
         return ( <div className="form-box">
                    <h1>{this.props.message}</h1>
                     <h1>{this.props.error}</h1>
@@ -44,6 +60,8 @@ class RegisterForm extends React.Component {
                         <input type="text" value ={this.state.username} name="username" id="username" onChange = {this.handleChange} placeholder="Enter Username" required />
                         <p>Password</p>
                         <input type="password" value ={this.state.password} name="password" id="password" onChange = {this.handleChange} placeholder="Enter Password" required />
+                        <p>Confirm Password</p>
+                        <input type="password" value ={this.state.confirmPassword} name="confirmPassword" id="confirmpassword" onChange = {this.handleChange} placeholder="confirm your Password" required />
                         <input type="submit" />
 
                     </form>
@@ -52,15 +70,14 @@ class RegisterForm extends React.Component {
     }
 }
 const mapStateToProps= (state)=>{
-    console.log(state);
     return {
     processing:state.auth.processing,
-    error:state.auth.error,
+    fail:state.auth.error,
     message:state.auth.message
 }}
 
-RegisterForm.propTypes = {
-    registerUser: PropTypes.func.isRequired
-};
+// RegisterForm.propTypes = {
+//     registerUser: PropTypes.func.isRequired
+// };
 
 export default connect(mapStateToProps, { registerUser })(RegisterForm);
