@@ -1,5 +1,13 @@
 import { authReducer } from '../signupReducer';
-import { registerAction,AutherrorAction,AuthprocessingAction  } from '../../actions/AuthActions';
+import {
+    registerAction,
+    AutherrorAction,
+    AuthprocessingAction,
+    loginAction,
+    LoginErrorAction,
+    loginProcessing
+} from '../../actions/AuthActions';
+import { loginReducer } from '../loginReducer';
 describe('auth reducer', ()=>{
     let userData, state
     beforeEach(()=>{
@@ -33,5 +41,37 @@ describe('auth reducer', ()=>{
      it('handles processing action', ()=>{
         const newState= authReducer(state, AuthprocessingAction(true))
         expect(newState).toEqual({...state, processing:true})
+     })
+})
+
+describe('test login reducer', ()=>{
+    let  state
+    beforeEach(()=>{
+
+
+        state={
+            loginMessage:'',
+            loginProcessing:false,
+            loginError:''
+        }
+    })
+
+    it('returns an initial state', ()=>{
+        
+        expect(loginReducer(undefined,{})).toEqual({...state})
+    })
+    it('handles the login action ', ()=>{
+        const payload = 'login successful'
+        const newState =loginReducer(state, loginAction(payload))
+        expect(newState).toEqual({...state, loginMessage:payload})
+    })
+     it('handles login error actions', ()=>{
+         const payload = 'login failed'
+         const newState = loginReducer(state, LoginErrorAction(payload))
+         expect(newState).toEqual({...state, loginError:payload})
+     })
+     it('handles login processing action', ()=>{
+        const newState= loginReducer(state, loginProcessing(true))
+        expect(newState).toEqual({...state, loginProcessing:true})
      })
 })

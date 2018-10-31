@@ -4,5 +4,8 @@ export const PROCESSING = 'PROCESSING'
 export const ERROR = 'ERROR'
 export const AUTH_ERROR = 'AUTH_ERROR'
 export const AUTH_PROCESSING = 'AUTH_PROCESSING'
-
+export const LOGIN = 'LOGIN'
+export const LOGIN_ERROR ='LOGIN_ERROR'
+export const LOGIN_STATUS ='LOGIN_STATUS'
+export const LOGIN_PROCESSING ='LOGIN_PROCESSING'
 

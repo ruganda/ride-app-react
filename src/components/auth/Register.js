@@ -1,6 +1,5 @@
 import React from 'react'
-import '../style.css'
-import {registerUser} from '../redux/actions/AuthActions'
+import { registerUser} from '../../redux/actions/AuthActions';
 import { connect } from "react-redux";
 import PropTypes from 'prop-types';
 import M from 'materialize-css'
@@ -33,18 +32,18 @@ class RegisterForm extends React.Component {
     if (this.state.password===this.state.confirmPassword){
 
         await this.props.registerUser(userData);
+        console.log('>>>>>>>>>>>>>>>>>>>>>>>',this.props)
         if (this.props.message){
+            this.props.history.push('/login')
              M.toast({html: 'You have successfully registered, please login ', classes: 'toast ', });
             }else if(this.props.fail && !this.props.processing){
                 M.toast({html: `${this.props.fail}`, classes: 'toast-danger ', });
             }
-
     }else{
         M.toast({html: 'Your passwords do not match', classes: 'toast-danger ', });
     }
     
     }
-    
 
 
     render() {
@@ -76,8 +75,8 @@ const mapStateToProps= (state)=>{
     message:state.auth.message
 }}
 
-// RegisterForm.propTypes = {
-//     registerUser: PropTypes.func.isRequired
-// };
+RegisterForm.propTypes = {
+    registerUser: PropTypes.func.isRequired
+};
 
 export default connect(mapStateToProps, { registerUser })(RegisterForm);
