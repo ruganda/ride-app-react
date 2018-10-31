@@ -1,4 +1,4 @@
-import { RETRIEVE_RIDES, ERROR , PROCESSING} from "./types";
+import { RETRIEVE_RIDES, ERROR , PROCESSING, LOGIN_PROCESSING} from "./types";
 import {axiosInstance} from "../../globals"
 
 const retrieveRideAction = (payload) =>({
@@ -15,6 +15,7 @@ const processingAction =payload=>({
     type: PROCESSING,
     payload
 })
+
 
 
 export const retrieveRides = ()=> async (dispatch) => {
