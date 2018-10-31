@@ -15,7 +15,9 @@ class App extends Component {
       <Provider store ={store}>
       <div className="App">
           <NavBar />
-          <Route exact path='/' component={ HomePage }/>
+          <Route exact path='/' component={ ({...props}) => {
+            return <HomePage {...props} />;
+          } }/>
           <Route path='/register' component={RegisterForm}/>
           <Route path='/rides' component={Rides }/>
 

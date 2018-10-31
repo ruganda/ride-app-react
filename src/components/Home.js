@@ -1,6 +1,7 @@
 import React from 'react'
 
-const HomePage =()=>{
+const HomePage =(props)=>{
+    console.log(props, 'props');
   return(
       <section id="showcase">
           <div className="jumbotron">

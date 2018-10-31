@@ -14,7 +14,6 @@ export default function (state = initialState, action){
             console.log('.........processing')
             return{...state, processing:action.processing}
         case RETRIEVE_RIDES:
-            console.log('retrieving....Rides')
             return {
                 ...state,
                 ridesList: action.payload

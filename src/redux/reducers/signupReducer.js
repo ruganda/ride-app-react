@@ -1,4 +1,4 @@
-import {ERROR, PROCESSING, REGISTER_USER} from "../actions/types";
+import {AUTH_ERROR, AUTH_PROCESSING, REGISTER_USER} from "../actions/types";
 
 
 const initialState = {
@@ -12,12 +12,13 @@ export const authReducer = (state = initialState, action)=> {
     case REGISTER_USER:
       return {
         ...state,
-        message: action.payload
+        message: action.payload,
+        processing:false
       };
-    case ERROR:
-        return{...state, error:action.payload};
-      case PROCESSING:
-        return {...state, processing:action.payload}
+    case AUTH_ERROR:
+        return{...state, error:action.payload, processing:false};
+      case AUTH_PROCESSING:
+        return {...state, processing:action.payload, message:'',error:''}
     default:
       return state;
   }
