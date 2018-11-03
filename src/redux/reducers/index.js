@@ -4,7 +4,7 @@ import {authReducer} from './signupReducer';
 import { loginReducer } from './loginReducer';
 
 export default combineReducers({
-    rides: rideReducer,
     auth: authReducer,
     login: loginReducer,
+    rides: rideReducer,
 });

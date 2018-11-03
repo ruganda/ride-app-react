@@ -18,7 +18,7 @@ export const authReducer = (state = initialState, action)=> {
     case AUTH_ERROR:
         return{...state, error:action.payload, processing:false};
       case AUTH_PROCESSING:
-        return {...state, processing:action.payload, message:'',error:''}
+        return {...state, processing:action.payload,error:''}
     default:
       return state;
   }
