@@ -1,36 +1,54 @@
-import React from 'react';
-import {Link} from "react-router-dom";
+import React, { Component } from 'react';
 import { NavLink } from 'react-router-dom';
+import { connect } from "react-redux";
 
-const NavBar = () => {
-    return (
-        <header>
-            <div className="container">
-                <div id="branding">
-                    <h1 className="highlight">
-                        RIDE MY WAY
-                    </h1>
-                </div>
-                <nav>
-                    <ul>
-                        <li className="current">
-                            <NavLink to='/'>Home</NavLink >
-                        </li>
-                        <li>
-                            <NavLink  to='/rides'>Rides</NavLink >
-                        </li>
-                        <li>
-                            <NavLink  to='/register'>Register</NavLink >
-                        </li>
-                        <li>
-                            <NavLink  to='/login'>Login</NavLink >
-                        </li>
 
-                    </ul>
-                </nav>
+
+class NavBar extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {  }
+    }
+    handleLogout=()=>{
+        if (localStorage.getItem('token')){
+            localStorage.removeItem('token')
+            this.props.history.push('/login')
+        }
+
+
+    }
+    render() { console.log('........', localStorage.getItem('token'))
+        return (
+
+        <nav>
+            <div class="nav-wrapper grey darken-4">
+            <h4 className="brand-logo row">Ride my way</h4>
+            <ul id="nav-mobile" className="right hide-on-med-and-down">
+                <li><NavLink  to='/'>Home</NavLink ></li>
+                {localStorage.getItem('token') && <li><NavLink  to='/rides'>Rides</NavLink ></li>}
+                {! localStorage.getItem('token') && <li><NavLink  to='/register'>Register</NavLink ></li>}
+                { localStorage.getItem('token') && <li><NavLink  to='/createRide'>Offer a ride</NavLink ></li>}
+                {! localStorage.getItem('token') && <li><NavLink  to='/login'>Login</NavLink ></li>}
+                {localStorage.getItem('token') && <li><NavLink  to='/login' onClick={this.handleLogout}>Logout</NavLink ></li>}
+            </ul>
             </div>
-        </header>
-     );
-};
+        </nav>
+         );
+    }
+}
 
-export { NavBar as default };
+const  CreateRideButton= () => {
+    return (
+        <div className="button-center">
+          <a href="offer_ride.html">
+            <button class="btnz btn-primary">OFFER A RIDE</button>
+          </a>
+        </div>
+     );
+}
+
+const mapStateToProps = state =>({
+    isLoggedIn:state.login.isLoggedIn
+});
+
+export default connect(mapStateToProps, {})(NavBar);

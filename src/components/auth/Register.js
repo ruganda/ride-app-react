@@ -35,37 +35,54 @@ class RegisterForm extends React.Component {
         console.log('>>>>>>>>>>>>>>>>>>>>>>>',this.props)
         if (this.props.message){
             this.props.history.push('/login')
-             M.toast({html: 'You have successfully registered, please login ', classes: 'toast ', });
+             M.toast({html: 'You have successfully registered, please login ', classes: 'green darken-4', });
             }else if(this.props.fail && !this.props.processing){
-                M.toast({html: `${this.props.fail}`, classes: 'toast-danger ', });
+                M.toast({html: `${this.props.fail}`, classes: 'red darken-4', });
             }
     }else{
-        M.toast({html: 'Your passwords do not match', classes: 'toast-danger ', });
+        M.toast({html: 'Your passwords do not match', classes: 'red darken-4', });
     }
-    
+
     }
 
 
     render() {
-            
-        return ( <div className="form-box">
-                   <h1>{this.props.message}</h1>
-                    <h1>{this.props.error}</h1>
-                    <h1>Register Here</h1>
-                    <form id="registerUser" onSubmit={this.handleSubmit}>
-                        <p>Name</p>
-                        <input type="text" value ={this.state.name} name="name" onChange = {this.handleChange} id="name" placeholder="Enter Name" required />
-                        <p>Username</p>
-                        <input type="text" value ={this.state.username} name="username" id="username" onChange = {this.handleChange} placeholder="Enter Username" required />
-                        <p>Password</p>
-                        <input type="password" value ={this.state.password} name="password" id="password" onChange = {this.handleChange} placeholder="Enter Password" required />
-                        <p>Confirm Password</p>
-                        <input type="password" value ={this.state.confirmPassword} name="confirmPassword" id="confirmpassword" onChange = {this.handleChange} placeholder="confirm your Password" required />
-                        <input type="submit" />
 
+        return (
+
+            <div className="container z-depth-5 jumbotron ">
+                <h3 className="blue-grey-text center subheader">Register an account</h3>
+
+                <div className="row">
+                    <form className="col s8 m7 l6 offset-s2 offset-m3 offset-l3" id="registerUser" onSubmit={this.handleSubmit}>
+                        <div className="input-field">
+                            <i className="material-icons prefix blue-text">Name</i>
+                            <input className='validate white-text' type="text" value ={this.state.name} name="name" onChange = {this.handleChange} id="name" placeholder="Enter Name" required />
+                        </div>
+
+                        <div className="input-field">
+                            <i className="material-icons prefix blue-text">account_circle</i>
+                            <input className='validate white-text' type="text" value ={this.state.username} name="username" id="username" onChange = {this.handleChange} placeholder="Enter Username" required />
+                        </div>
+
+
+                        <div className="input-field">
+                            <i className="material-icons prefix blue-text">lock</i>
+                            <input className='validate white-text' type="password" value ={this.state.password} name="password" id="password" onChange = {this.handleChange} placeholder="Enter Password" required />
+                        </div>
+
+                        <div className="input-field">
+                            <i className="material-icons prefix blue-text ">lock</i>
+                            <input className='validate white-text' type="password" value ={this.state.confirmPassword} name="confirmPassword" id="confirmpassword" onChange = {this.handleChange} placeholder="confirm your Password" required />
+                        </div>
+
+                        <div className="row">
+                            <button class="btn waves-effect waves-light right"> sign up</button>
+                        </div>
                     </form>
-
-                </div>);
+                </div>
+            </div>
+        );
     }
 }
 const mapStateToProps= (state)=>{

@@ -23,29 +23,42 @@ class Login extends Component {
         await this.props.handleLogin(this.state)
         if(this.props.message && !this.props.processing){
             this.props.history.push('/rides')
-            M.toast({html: 'You have logged in successfully', classes: 'toast ', });
+            M.toast({html: 'You have logged in successfully', classes: 'green darken-4', });
         }else if (this.props.error && !this.props.processing){
-            M.toast({html: `${this.props.error}`, classes: 'toast-danger ', });
+            M.toast({html: `${this.props.error}`, classes: 'red darken-4', });
         }
     }
     render() {
         return (
-            <div class="form-box">
-                <h1> Login Here</h1>
-                <form id='loginUser' onSubmit={this.handleSubmit}>
-                    <p>Username</p>
-                    <input type="text" name="username" value= {this.state.username} onChange={this.handleChange} placeholder="Enter Username" id='username' required />
-                    <p>Password</p>
-                    <input type="password" name="password" value={this.state.password} onChange = {this.handleChange}
-                     placeholder="Enter Password" id='password' required />
-                    <input type="submit" name="submit"  />
+            <div className="container z-depth-5 jumbotron  ">
+                <h3 className="blue-grey-text center subheader">Please Login</h3>
 
-                 </form>
+                <div className="row">
+                    <form className="col s8 m7 l6 offset-s2 offset-m3 offset-l3" id='loginUser'
+                          onSubmit={this.handleSubmit}>
+
+                        <div className="input-field">
+                            <i className="material-icons prefix blue-text">account_circle</i>
+                            <input className='validate white-text' type="text" value={this.state.username} name="username"
+                                   id="username" onChange={this.handleChange} placeholder="Enter Username" required/>
+                        </div>
+
+                        <div className="input-field">
+                            <i className="material-icons prefix blue-text">lock</i>
+                            <input className='validate white-text' type="password" value={this.state.password} name="password"
+                                   id="password" onChange={this.handleChange} placeholder="Enter Password" required/>
+                        </div>
+
+                        <div className="row">
+                            <button className="btn  blue right hoverable "> LOGIN</button>
+                        </div>
+                    </form>
+                </div>
             </div>
                         );
                    }
                }
-                
+
 const mapStateToProps= (state)=>{
 return {
 processing:state.login.processing,
@@ -55,6 +68,7 @@ message:state.login.loginMessage
 
 Login.propTypes = {
 handleLogin: PropTypes.func.isRequired
+
 };
 
 export default connect(mapStateToProps, { handleLogin })(Login);
