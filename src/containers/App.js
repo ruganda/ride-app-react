@@ -10,6 +10,7 @@ import RegisterForm from '../components/auth/Register';
 import Login from '../components/auth/login';
 import store from '../redux/store/Store'
 import CreateRide from '../components/rides/createRides';
+import Requests from '../components/requests/request'
 
 
 class App extends Component {
@@ -25,6 +26,7 @@ class App extends Component {
           <Route exact path='/login' component={Login}/>
           <Route exact path='/rides' component={Rides }/>
           <Route exact path='/createRide' component={CreateRide}/>
+          <Route exact path='/requests' component={Requests}/>
       </div>
       </Switch>
       </Router>

@@ -7,7 +7,7 @@ import {
     retrieveRideAction,
     processingAction
 } from '../../actions/rideActions';
-describe('auth reducer', ()=>{
+describe('ride reducer', ()=>{
     let state
     beforeEach(()=>{
 
@@ -30,7 +30,7 @@ describe('auth reducer', ()=>{
         const newState =rideReducer(state, createRideAction(payload))
         expect(newState).toEqual({...state, CreateMessage:payload})
     })
-     it('handles auth error actions', ()=>{
+     it('handles ride error actions', ()=>{
          const payload = 'ride creation failed'
          const newState = rideReducer(state, CreateErrorAction(payload))
          expect(newState).toEqual({...state, CreateRideError:payload})
@@ -41,7 +41,7 @@ describe('auth reducer', ()=>{
      })
 })
 
-describe('test login reducer', ()=>{
+describe('test ride reducer', ()=>{
     let  state
     beforeEach(()=>{
 

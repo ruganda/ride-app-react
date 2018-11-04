@@ -3,6 +3,7 @@ import { registerUser} from '../../redux/actions/AuthActions';
 import { connect } from "react-redux";
 import PropTypes from 'prop-types';
 import M from 'materialize-css'
+import Spinner from '../spinner';
 
 
 
@@ -32,7 +33,6 @@ class RegisterForm extends React.Component {
     if (this.state.password===this.state.confirmPassword){
 
         await this.props.registerUser(userData);
-        console.log('>>>>>>>>>>>>>>>>>>>>>>>',this.props)
         if (this.props.message){
             this.props.history.push('/login')
              M.toast({html: 'You have successfully registered, please login ', classes: 'green darken-4', });
@@ -51,12 +51,15 @@ class RegisterForm extends React.Component {
         return (
 
             <div className="container z-depth-5 jumbotron ">
+            <div>
+                {this.props.processing && <Spinner/>}
+            </div> 
                 <h3 className="blue-grey-text center subheader">Register an account</h3>
 
                 <div className="row">
                     <form className="col s8 m7 l6 offset-s2 offset-m3 offset-l3" id="registerUser" onSubmit={this.handleSubmit}>
                         <div className="input-field">
-                            <i className="material-icons prefix blue-text">Name</i>
+                            <i className="material-icons prefix blue-text">account_circle</i>
                             <input className='validate white-text' type="text" value ={this.state.name} name="name" onChange = {this.handleChange} id="name" placeholder="Enter Name" required />
                         </div>
 

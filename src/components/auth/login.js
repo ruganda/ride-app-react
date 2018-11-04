@@ -3,6 +3,7 @@ import { handleLogin } from '../../redux/actions/AuthActions';
 import { connect } from "react-redux";
 import PropTypes from 'prop-types';
 import M from 'materialize-css'
+import Spinner from '../spinner';
 
 
 class Login extends Component {
@@ -21,8 +22,9 @@ class Login extends Component {
     handleSubmit = async(e)=>{
         e.preventDefault();
         await this.props.handleLogin(this.state)
+
         if(this.props.message && !this.props.processing){
-            this.props.history.push('/rides')
+            window.location.replace('rides');
             M.toast({html: 'You have logged in successfully', classes: 'green darken-4', });
         }else if (this.props.error && !this.props.processing){
             M.toast({html: `${this.props.error}`, classes: 'red darken-4', });
@@ -30,7 +32,12 @@ class Login extends Component {
     }
     render() {
         return (
+            <div>
+            <div>
+                {this.props.processing && <Spinner/>}
+            </div> 
             <div className="container z-depth-5 jumbotron  ">
+               
                 <h3 className="blue-grey-text center subheader">Please Login</h3>
 
                 <div className="row">
@@ -50,18 +57,18 @@ class Login extends Component {
                         </div>
 
                         <div className="row">
-                            <button className="btn  blue right hoverable "> LOGIN</button>
+                            <button className="btn  blue right hoverable ">LOGIN</button>
                         </div>
                     </form>
                 </div>
             </div>
-                        );
+            </div>            );
                    }
                }
 
 const mapStateToProps= (state)=>{
 return {
-processing:state.login.processing,
+processing:state.login.loginProcessing,
 error:state.login.loginError,
 message:state.login.loginMessage
 }}

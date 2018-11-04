@@ -1,8 +1,10 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
 import { retrieveRides } from "../../redux/actions/rideActions";
+import { handleRequests, handleRetrieveRequests} from '../../redux/actions/requestAction'
 import PropTypes from 'prop-types';
 import Spinner from '../spinner';
+import { NavLink } from 'react-router-dom';
 
 class Rides extends Component {
 
@@ -18,6 +20,9 @@ class Rides extends Component {
         <td>{ride.destination}</td>
         <td>{ride.date}</td>
         <td>{ride.driver}</td>
+        <td>< RequestButton driver = {ride.driver}
+         handleClick ={()=>{this.props.handleRequests(ride.id)}}
+         ManageRequest={()=>{this.props.handleRetrieveRequests(ride.id)}}/></td>
     </tr>
 
     ));
@@ -28,13 +33,14 @@ class Rides extends Component {
           {this.props.processing &&<Spinner/>}
       </div>
 
-        <table className='white responsive-table'>
+        <table className='white'>
     <thead>
-      <tr>
+      <tr id>
           <th>Origin</th>
           <th>Destination</th>
           <th>Travel Date</th>
           <th>Driver</th>
+          <th></th>
       </tr>
     </thead>
 
@@ -49,6 +55,21 @@ class Rides extends Component {
   }
 };
 
+const RequestButton = (props) => {
+  return ( 
+    <div>
+      {localStorage.getItem('username')===props.driver?
+      
+      <NavLink className="btn waves-light" to='/requests' onClick = {props.ManageRequest} >MANAGE REQUESTS</NavLink >
+      :
+    <button className="btn blue waves-light" onClick = {props.handleClick} type="submit" name="action">JOIN RIDE
+    <i class="material-icons right">send</i>
+    </button>}
+    </div>
+   );
+}
+ 
+
 Rides.PropTypes ={
   retrieveRides: PropTypes.func.isRequired,
   rides: PropTypes.array.isRequired
@@ -60,4 +81,4 @@ const mapStateToProps = state =>({
   processing: state.rides.processing
 });
 
-export default connect(mapStateToProps, {retrieveRides})(Rides);
+export default connect(mapStateToProps, {retrieveRides, handleRequests,handleRetrieveRequests})(Rides);
