@@ -31,6 +31,10 @@ describe('test the sign up component renders without crashing', ()=>{
         const component = mount(<RegisterForm store = {store}/>)
         component.find('#registerUser').simulate('submit')
     })
+    it('should handle change', ()=>{
+        const component = mount(<RegisterForm store = {store}/>)
+        component.find('#username').simulate('change')
+    })
 })
 
 
@@ -58,5 +62,9 @@ describe('test the login component renders without crashing', ()=>{
     it('should submit the form successfully', ()=>{
         const component = mount(<Login store = {store}/>)
         component.find('#loginUser').simulate('submit')
+    })
+    it('should handle change', ()=>{
+        const component = mount(<Login store = {store}/>)
+        component.find('#username').simulate('change')
     })
 })

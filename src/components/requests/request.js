@@ -2,7 +2,7 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
 import Spinner from '../spinner';
-
+import { handleRequestUpdate, handleRetrieveRequests } from '../../redux/actions/requestAction';
 class Requests extends Component {
 
 
@@ -11,11 +11,13 @@ class Requests extends Component {
 //   }
   render() {
     const requestItems = this.props.requests.map(request=>(
-
     <tr key ={request.id} className = "col 6 center">
         <td>{request.passenger}</td>
-        <td>{request.status}</td>
-        <td>< RequestButton /></td>
+        <td>{this.props.status?this.props.status:request.status}</td>
+        <td>< RequestButton 
+        handleAccept ={()=>{this.props.handleRequestUpdate({status:'accepted'},request.ride_id,request.id)}}
+        handleReject ={()=>{this.props.handleRequestUpdate({status:'rejected'},request.ride_id,request.id)}}/>
+        </td>
     </tr>
 
     ));
@@ -48,12 +50,12 @@ class Requests extends Component {
 export const RequestButton = (props) => {
   return ( 
     <div>
-    <button className="btn green waves-light "  type="submit" name="action">ACCEPT
+    <button className="btn green waves-light "  type="submit" name="action" onClick ={props.handleAccept} >ACCEPT
     <i class="material-icons right ">check_circle</i>
     </button>
     
-    <button className="btn red waves-light"  type="submit" name="action">REJECT
-    <i class="material-icons center">clear</i>
+    <button className="btn red waves-light update-button"  type="submit" name="action" onClick = {props.handleReject}>REJECT
+    <i class="material-icons right">clear</i>
     </button>
     </div>
    );
@@ -63,7 +65,8 @@ export const RequestButton = (props) => {
 const mapStateToProps = state =>{
     return{
   requests: state.requests.requestList,
-  processing: state.requests.processing
+  processing: state.requests.processing,
+  status: state.requests.status
 }};
 
-export default connect(mapStateToProps, { })(Requests);
+export default connect(mapStateToProps, { handleRequestUpdate })(Requests);
