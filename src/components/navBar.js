@@ -21,8 +21,8 @@ class NavBar extends Component {
         <div>
         <nav>
             <div class="nav-wrapper grey darken-4 responsive">
-            <h4 className="brand-logo row">Ride my way</h4>
-            <ul id="nav-mobile" className="right hide-on-med-and-down">
+            <h4 className="brand-logo hide-on-small-only">Ride my way</h4>
+            <ul id="nav-mobile" className="right">
                 <li><NavLink  to='/'>Home</NavLink ></li>
                 {localStorage.getItem('token') && <li><NavLink  to='/rides'>Rides</NavLink ></li>}
                 {! localStorage.getItem('token') && <li><NavLink  to='/register'>Register</NavLink ></li>}

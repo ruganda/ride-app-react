@@ -19,7 +19,7 @@ class Rides extends Component {
         <td>{ride.origin}</td>
         <td>{ride.destination}</td>
         <td>{ride.date}</td>
-        <td>{ride.driver}</td>
+        <td className='hide-on-small-only'>{ride.driver}</td>
         <td>< RequestButton driver = {ride.driver}
          handleClick ={()=>{this.props.handleRequests(ride.id)}}
          ManageRequest={()=>{this.props.handleRetrieveRequests(ride.id)}}/></td>
@@ -39,7 +39,7 @@ class Rides extends Component {
           <th>Origin</th>
           <th>Destination</th>
           <th>Travel Date</th>
-          <th>Driver</th>
+          <th className='hide-on-small-only'>Driver</th>
           <th></th>
       </tr>
     </thead>
@@ -60,9 +60,9 @@ const RequestButton = (props) => {
     <div>
       {localStorage.getItem('username')===props.driver?
       
-      <NavLink className="btn waves-light" to='/requests' onClick = {props.ManageRequest} >MANAGE REQUESTS</NavLink >
+      <NavLink className="btn waves-light responsive-btn" to='/requests' onClick = {props.ManageRequest} >MANAGE REQUESTS</NavLink >
       :
-    <button className="btn blue waves-light" onClick = {props.handleClick} type="submit" name="action">JOIN RIDE
+    <button className="btn blue waves-light responsive-btn " onClick = {props.handleClick} type="submit" name="action">JOIN RIDE
     <i class="material-icons right">send</i>
     </button>}
     </div>
