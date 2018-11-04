@@ -2,7 +2,6 @@ import React from 'react'
 import { NavLink } from 'react-router-dom';
 
 const HomePage =(props)=>{
-    console.log(props, 'props');
   return(
       <section id="showcase">
           <div className="container">

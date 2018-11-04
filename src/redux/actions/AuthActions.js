@@ -9,6 +9,7 @@ import {
 import {axiosInstance} from "../../globals";
 
 
+
 export const registerAction=payload=>({
     type: REGISTER_USER,
     payload
@@ -65,9 +66,10 @@ export const handleLogin = (loginData)=> async (dispatch) => {
         axiosInstance.post('/auth/login', loginData)
             .then((response) => {
                 localStorage.setItem('token',response.data.token)
+                localStorage.setItem('username',loginData.username )
                 dispatch(loginAction(response.data.message));
                 dispatch(loginProcessing(false));
-
+                
             })
             .catch((error) => {
                 dispatch(LoginErrorAction(error.response.data.message));
