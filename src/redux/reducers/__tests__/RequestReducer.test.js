@@ -13,7 +13,8 @@ describe('ride reducer', ()=>{
         state={
             requestList:[],
             error:'',
-            processing:false
+            processing:false,
+            status:''
         }
     })
 

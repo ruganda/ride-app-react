@@ -1,7 +1,11 @@
 import {axiosInstance} from "../../globals"
-import { REQUEST_RIDE, REQUEST_RIDE_PROCESSING, REQUEST_FAILED } from './types';
+import { REQUEST_RIDE, REQUEST_RIDE_PROCESSING, REQUEST_FAILED, UPDATE_REQUEST } from './types';
 import M from 'materialize-css'
 
+export const updateRequestAction = payload=>({
+    type: UPDATE_REQUEST,
+    payload
+})
 
 export const  RequestAction = payload =>({
     type: REQUEST_RIDE,
@@ -48,3 +52,24 @@ export const handleRetrieveRequests = (rideId)=>  async(dispatch) => {
             })
 
 };
+
+
+
+export const handleRequestUpdate = (requestData, rideId,rId)=> async (dispatch) => {
+    dispatch(requestProcessingAction(true));
+    return await(
+    axiosInstance.put(`/users/rides/${rideId}/requests/${rId}`,requestData )
+        .then((response) => {
+            dispatch(updateRequestAction(response.data.status));
+
+            dispatch(requestProcessingAction(false));
+            M.toast({html: `${response.data.message}`, classes: 'green darken-4', });
+        })
+        .catch((error) => {
+            dispatch(updateRequestAction(error.response.data.message));
+            dispatch(requestProcessingAction(false));
+        })
+    );
+};
+
+
