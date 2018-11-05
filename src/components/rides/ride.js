@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
 import { connect } from "react-redux";
-import { retrieveRides } from "../../redux/actions/rideActions";
-import { handleRequests, handleRetrieveRequests} from '../../redux/actions/requestAction'
+import { retrieveRides, retrieveRideDetails } from "../../redux/actions/rideActions";
 import PropTypes from 'prop-types';
 import Spinner from '../spinner';
-import { NavLink } from 'react-router-dom';
 
 class Rides extends Component {
 
@@ -12,17 +10,20 @@ class Rides extends Component {
   componentDidMount = ()=> {
     this.props.retrieveRides();
   }
+
+  handleClick = Id => e =>{
+    e.preventDefault();
+    this.props.retrieveRideDetails(Id)
+    this.props.history.push(`/rides/${Id}`)
+  }
   render() {
     const rideItems = this.props.rides.map(ride=>(
 
     <tr key ={ride.id}>
         <td>{ride.origin}</td>
         <td>{ride.destination}</td>
-        <td>{ride.date}</td>
         <td className='hide-on-small-only'>{ride.driver}</td>
-        <td>< RequestButton driver = {ride.driver}
-         handleClick ={()=>{this.props.handleRequests(ride.id)}}
-         ManageRequest={()=>{this.props.handleRetrieveRequests(ride.id)}}/></td>
+        <td><div  onClick={this.handleClick(ride.id)}>< RequestButton /></div></td>
     </tr>
 
     ));
@@ -38,7 +39,6 @@ class Rides extends Component {
       <tr id>
           <th>Origin</th>
           <th>Destination</th>
-          <th>Travel Date</th>
           <th className='hide-on-small-only'>Driver</th>
           <th></th>
       </tr>
@@ -58,14 +58,9 @@ class Rides extends Component {
 const RequestButton = (props) => {
   return ( 
     <div>
-      {localStorage.getItem('username')===props.driver?
-      
-      <NavLink className="btn waves-light responsive-btn" to='/requests' onClick = {props.ManageRequest} >MANAGE REQUESTS</NavLink >
-      :
-    <button className="btn blue waves-light responsive-btn " onClick = {props.handleClick} type="submit" name="action">JOIN RIDE
-    <i class="material-icons right">send</i>
-    </button>}
-    </div>
+      <button className="btn waves-light responsive-btn" >DETAILS</ button >
+      </div>
+
    );
 }
  
@@ -81,4 +76,4 @@ const mapStateToProps = state =>({
   processing: state.rides.processing
 });
 
-export default connect(mapStateToProps, {retrieveRides, handleRequests,handleRetrieveRequests})(Rides);
+export default connect(mapStateToProps, {retrieveRides, retrieveRideDetails})(Rides);

@@ -11,6 +11,7 @@ import Login from '../components/auth/login';
 import store from '../redux/store/Store'
 import CreateRide from '../components/rides/createRides';
 import Requests from '../components/requests/request'
+import RideDetails from '../components/rides/rideDetail';
 
 
 class App extends Component {
@@ -26,7 +27,8 @@ class App extends Component {
           <Route exact path='/login' component={Login}/>
           <Route exact path='/rides' component={Rides }/>
           <Route exact path='/createRide' component={CreateRide}/>
-          <Route exact path='/requests' component={Requests}/>
+          <Route exact path='/rides/:Id/requests' component={Requests}/>
+          <Route exact path='/rides/:Id' component={RideDetails}/>
       </div>
       </Switch>
       </Router>

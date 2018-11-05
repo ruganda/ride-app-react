@@ -19,10 +19,10 @@ describe('test the  request component renders without crashing', ()=>{
       }
 
     const store = storeFake({requests:{requestList:[], processing:""}});
-    
+    const match={params:{}}
     const wrapper = mount(
         <Provider store={store}>
-            <Request store={store}/>
+            <Request store={store} match={match}/>
         </Provider>
     ) 
    const  container = wrapper.find(Request)

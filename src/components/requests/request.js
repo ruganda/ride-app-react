@@ -6,12 +6,12 @@ import { handleRequestUpdate, handleRetrieveRequests } from '../../redux/actions
 class Requests extends Component {
 
 
-//   componentDidMount = ()=> {
-//     this.props.handleRetrieveRequests(this.props.ride);
-//   }
+  componentDidMount = ()=> {
+    this.props.handleRetrieveRequests(this.props.match.params.Id);
+  }
   render() {
-    const requestItems = this.props.requests.map(request=>(
-    <tr key ={request.id} className = "col 6 center">
+    const requestItems = !Array.isArray(this.props.requests)?[]: this.props.requests.map(request=>(
+    <tr key ={request.id}>
         <td>{request.passenger}</td>
         <td>{this.props.status?this.props.status:request.status}</td>
         <td>< RequestButton 
@@ -21,13 +21,14 @@ class Requests extends Component {
     </tr>
 
     ));
+  
     return (
 
       <div>
-      <div className={'center'}>
+      <div className={'center container'}>
           {this.props.processing &&<Spinner/>}
-      </div>
-        <table className='white'>
+          {this.props.requests.length===0?<h4 className='white'>You currently have no ride requests try again later.</h4>:
+          <table className='white'>
     <thead>
       <tr >
           <th>passenger</th>
@@ -37,10 +38,11 @@ class Requests extends Component {
     </thead>
 
     <tbody>
-    {this.props.requests.length===0 && <h3 className='white'>You currently have no ride requests try again later.</h3>}
     {requestItems}
     </tbody>
-  </table>
+  </table>}
+      </div>
+        
 
       </div>
     );
@@ -69,4 +71,4 @@ const mapStateToProps = state =>{
   status: state.requests.status
 }};
 
-export default connect(mapStateToProps, { handleRequestUpdate })(Requests);
+export default connect(mapStateToProps, {  handleRetrieveRequests , handleRequestUpdate })(Requests);

@@ -4,7 +4,8 @@ import {
     PROCESSING,
     CREATE_RIDE,
     CREATE_RIDE_ERROR,
-    CREATE_RIDE_PROCESSING
+    CREATE_RIDE_PROCESSING,
+    RIDE_DETAILS
 } from './types';
 import {axiosInstance} from "../../globals"
 
@@ -38,7 +39,10 @@ export const CreateProcessingAction =payload=>({
     payload
 })
 
-
+export const rideDeatailsAction = payload=>({
+    type: RIDE_DETAILS,
+    payload
+})
 
 export const retrieveRides = ()=> async (dispatch) => {
 
@@ -69,4 +73,20 @@ export const CreateRides = (rideData)=> async (dispatch) => {
             dispatch(CreateProcessingAction(false));
         })
     );
+};
+
+
+export const retrieveRideDetails = (rideId)=> async (dispatch) => {
+
+    dispatch(processingAction(true));
+        axiosInstance.get(`/rides/${rideId}`)
+            .then((response) => {
+                console.log('........logging', response.data)
+                dispatch(rideDeatailsAction(response.data));
+                dispatch(processingAction(false));
+            })
+            .catch((error) => {
+                console.log(error)
+            })
+
 };

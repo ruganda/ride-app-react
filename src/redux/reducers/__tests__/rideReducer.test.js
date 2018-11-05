@@ -17,7 +17,8 @@ describe('ride reducer', ()=>{
             error: '',
             CreateMessage:'',
             CreateRideProcessing:false,
-            CreateRideError:''
+            CreateRideError:'',
+            rideDetail: {}
         }
     })
 
@@ -52,7 +53,8 @@ describe('test ride reducer', ()=>{
             error: '',
             CreateMessage:'',
             CreateRideProcessing:false,
-            CreateRideError:''
+            CreateRideError:'',
+            rideDetail :{}
         }
     })
 
