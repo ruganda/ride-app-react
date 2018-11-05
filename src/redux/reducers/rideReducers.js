@@ -4,7 +4,8 @@ import {
     RETRIEVE_RIDES,
     CREATE_RIDE,
     CREATE_RIDE_ERROR,
-    CREATE_RIDE_PROCESSING
+    CREATE_RIDE_PROCESSING,
+    RIDE_DETAILS
 } from '../actions/types';
 
 const initialState = {
@@ -13,7 +14,8 @@ const initialState = {
     error: '',
     CreateMessage:'',
     CreateRideProcessing:false,
-    CreateRideError:''
+    CreateRideError:'',
+    rideDetail:{}
 };
 
 export default function (state = initialState, action) {
@@ -37,6 +39,8 @@ export default function (state = initialState, action) {
             return { ...state, CreateRideError:action.payload, CreateMessage:'' }
         case CREATE_RIDE_PROCESSING:
             return{ ...state,CreateRideProcessing:action.payload}
+        case RIDE_DETAILS:
+            return{...state, rideDetail: action.payload}
         default:
             return state;
 
